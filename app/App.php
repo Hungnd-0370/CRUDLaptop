@@ -38,13 +38,13 @@ class App {
 			$this->__controller = 'Login';
 
 		} elseif(!empty($urlArr[0])) {
+			$controllerFolder = $urlArr[0];
 			$this->__controller = ucfirst($urlArr[0]);
-
 		} else {
 			
 		}
-		if(file_exists('app/controllers/'.($this->__controller).'.php')) {
-			require_once 'app/controllers/'.($this->__controller).'.php';
+		if(file_exists('app/controllers/'.$controllerFolder.'/'.($this->__controller).'Controller.php')) {
+			require_once 'app/controllers/'.$controllerFolder.'/'.($this->__controller).'Controller.php';
 			$this->__controller = new $this->__controller();
 		} else {
 			$this->loadError();
