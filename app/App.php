@@ -23,7 +23,7 @@ class App {
 		}
 		return $url;
 	}
-//locahost/product/detail/1/1/2 /controller/action/params
+
 	public function handleUrl() {
 
 		$url = $this->getUrl();
@@ -32,20 +32,23 @@ class App {
 
 		if (strcmp($urlArr[0], 'signup') == 0) {
 			$this->__controller = 'Signup';
+			$controllerFolder = 'user';
 			
-
 		} elseif (strcmp($urlArr[0], 'login') == 0) {
 			$this->__controller = 'Login';
+			$controllerFolder = 'user';
 
 		} elseif(!empty($urlArr[0])) {
+
 			$controllerFolder = $urlArr[0];
 			$this->__controller = ucfirst($urlArr[0]);
-		} else {
-			
-		}
+		} 
+
 		if(file_exists('app/controllers/'.$controllerFolder.'/'.($this->__controller).'Controller.php')) {
+
 			require_once 'app/controllers/'.$controllerFolder.'/'.($this->__controller).'Controller.php';
 			$this->__controller = new $this->__controller();
+			
 		} else {
 			$this->loadError();
 		}
