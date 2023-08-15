@@ -7,15 +7,17 @@
 
     <?php flash('login') ?>
 
-    <form method="post" action="/login/sendRequest">
+    <form method="post" action="/login/sendRequest" id="login-form">
     <input type="hidden" name="type" value="login">
         <input type="text" name="name/email"  
         placeholder="Username/Email...">
         <input type="password" name="userPassword"
         placeholder="Password...">
 		<div class="remember-me-container">
-			<input type="checkbox" id="remember-me" name="remember-me" value="login">
-			<p class="remember-me-text">Remember me</p>
+		<input type="checkbox" name="remember-me" id="remember-me"
+                <?php if(isset($_COOKIE["member_login"])) { ?> checked
+                <?php } ?> />
+		<p class="remember-me-text">Remember me</p>
 		</div>
         <button type="submit" name="submit">Log In</button>
     </form>

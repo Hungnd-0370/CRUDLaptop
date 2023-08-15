@@ -18,33 +18,35 @@ class LoginController extends Controller{
 
 	public function sendRequest() {
 
-		 //Init data
-		 $data=[
-            'name/email' => trim($_POST['name/email']),
-            'userPassword' => trim($_POST['userPassword'])
-        ];
+		if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['type'] == 'login') {
 
-        if(empty($data['name/email']) || empty($data['userPassword'])){
-            flash("login", "Please fill out all inputs");
-			redirect(_WEB_ROOT.'/login');
-            exit();
-        }
+			$data=[
+				'name/email' => trim($_POST['name/email']),
+				'userPassword' => trim($_POST['userPassword'])
+			];
 
-        //Check for user/email
-        if($this->userMapper->findUserByEmailOrUsername($data['name/email'], $data['name/email'])){
+			if(empty($data['name/email']) || empty($data['userPassword'])){
+				flash("login", "Please fill out all inputs");
+				redirect(_WEB_ROOT.'/login');
+				exit();
+			}
 
-			$loggedInUser = $this->userMapper->login($data['name/email'], $data['userPassword']);
-			
-            if($loggedInUser){
-                $this->createUserSession($loggedInUser);
-            }else{
-                flash("login", "Password Incorrect");
-                redirect(_WEB_ROOT.'/login');
-            }
-        }else{
-            flash("login", "No user found");
-            redirect(_WEB_ROOT.'/login');
-        }
+			//Check for user/email
+			if($this->userMapper->findUserByEmailOrUsername($data['name/email'], $data['name/email'])){
+
+				$loggedInUser = $this->userMapper->login($data['name/email'], $data['userPassword']);
+				
+				if($loggedInUser){
+					$this->createUserSession($loggedInUser);
+				}else{
+					flash("login", "Password Incorrect");
+					redirect(_WEB_ROOT.'/login');
+				}
+			}else{
+				flash("login", "No user found");
+				redirect(_WEB_ROOT.'/login');
+			}
+		}
 	}
 
 	public function createUserSession($user){
@@ -53,6 +55,14 @@ class LoginController extends Controller{
         $_SESSION['userName'] = $user->userName;
         $_SESSION['userEmail'] = $user->userEmail;
 
-        redirect(_WEB_ROOT.'/products');
+        redirect(_WEB_ROOT.'/home');
     }
+
+	public function rememberMe() {
+	
+		if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['type'] == 'remember-me') {
+			echo "remembered";
+		}
+	}
+
 }
