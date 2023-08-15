@@ -31,6 +31,7 @@ class App {
 		$urlArr = array_values($urlArr);
 
 		if (strcmp($urlArr[0], 'signup') == 0) {
+			
 			$this->__controller = 'SignupController';
 			$controllerFolder = 'user';
 			
