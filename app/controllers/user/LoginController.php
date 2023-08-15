@@ -3,7 +3,7 @@ require_once __DIR_ROOT.'/core/Controller.php';
 require_once __DIR_ROOT.'/app/models/user/mappers/UserMapper.php';
 require_once __DIR_ROOT.'/helpers/session_helper.php';
 
-class Login extends Controller{
+class LoginController extends Controller{
 
 	private $userMapper;
 
@@ -36,7 +36,6 @@ class Login extends Controller{
 			$loggedInUser = $this->userMapper->login($data['name/email'], $data['userPassword']);
 			
             if($loggedInUser){
-				// echo "run";
                 $this->createUserSession($loggedInUser);
             }else{
                 flash("login", "Password Incorrect");
@@ -50,11 +49,10 @@ class Login extends Controller{
 
 	public function createUserSession($user){
 		
-		// echo "run 123";
         $_SESSION['userId'] = $user->userId;
         $_SESSION['userName'] = $user->userName;
         $_SESSION['userEmail'] = $user->userEmail;
 
-        redirect('home');
+        redirect(_WEB_ROOT.'/products');
     }
 }
