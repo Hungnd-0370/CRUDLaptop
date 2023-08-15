@@ -27,21 +27,13 @@ class SignupController extends Controller{
 				'pwdRepeat' => trim($_POST['pwdRepeat'])
 			];
 
-			echo $data->userName;
-
 			$this->validate($data);
-
-			//User with the same email or password already exists
-			// if($this->modelUser->findUserByEmailOrUsername($data['userEmail'], $data['userName'])){
-			// 	flash("register", "Username or email already taken");
-			// }
 
 			//hash password
 			$data['userPassword'] = password_hash($data['userPassword'], PASSWORD_DEFAULT);
 
 			if($this->userMapper->register($data)){
 				redirect(_WEB_ROOT.'/login');
-
 			}else{
 				die("Something went wrong");
 			}
@@ -69,8 +61,15 @@ class SignupController extends Controller{
 			flash("register", "Invalid password");
 			redirect(_WEB_ROOT.'/signup');
 
-		} else if($data['userPassword'] !== $data['pwdRepeat']){
+		} 
+		
+		if($data['userPassword'] !== $data['pwdRepeat']){
 			flash("register", "Passwords don't match. Please check");
+			redirect(_WEB_ROOT.'/signup');
+		}
+
+		if(!duplicateValidate($data)){
+			flash("register", "Username or email already taken");
 			redirect(_WEB_ROOT.'/signup');
 		}
 	}
@@ -86,5 +85,11 @@ class SignupController extends Controller{
 		}
 	}
 
-	
+	public function duplicateValidate($data) {
+
+		if($this->userMapper->findUserByEmailOrUsername($data['userEmail'], $data['userId'])) {
+			return false;
+		}
+		return true;
+	}
 }
