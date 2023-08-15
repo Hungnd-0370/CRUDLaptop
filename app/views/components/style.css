@@ -24,7 +24,10 @@
 	width: 100%;
 	padding: 0 20px;
   }
-  
+  .header {
+	text-align: center;
+	margin-top: 100px;
+  }
   form input {
 	width: 100%;
 	outline: none;

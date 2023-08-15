@@ -50,18 +50,17 @@ class SignupController extends Controller{
 
 	public function validate ($data) {
 
-		if(empty($data['userName']) || empty($data['userEmail']) || empty($data['userId']) || 
-		empty($data['userPassword']) || empty($data['pwdRepeat'])){
+		if (!arrayEmptyValidate($data)) {
 			flash("register", "Please fill out all inputs");
 			redirect(_WEB_ROOT.'/signup');
 		}
 
-		if(!preg_match("/^[a-zA-Z0-9]*$/", $data['userId'])){
-			flash("register", "Invalid username");
+		if(!userNameValidate($data['userId'])){
+			flash("register", "Invalid username. Please choose another");
 			redirect(_WEB_ROOT.'/signup');
 		}
 
-		if(!filter_var($data['userEmail'], FILTER_VALIDATE_EMAIL)){
+		if(!emailValidate($data['userEmail'])){
 			flash("register", "Invalid email");
 			redirect(_WEB_ROOT.'/signup');
 		}
@@ -71,8 +70,21 @@ class SignupController extends Controller{
 			redirect(_WEB_ROOT.'/signup');
 
 		} else if($data['userPassword'] !== $data['pwdRepeat']){
-			flash("register", "Passwords don't match");
+			flash("register", "Passwords don't match. Please check");
 			redirect(_WEB_ROOT.'/signup');
 		}
 	}
+
+	public function userNameValidate($username) {
+
+		$pattern = '/^[a-zA-Z_][a-zA-Z0-9_]*$/';
+	
+		if (preg_match($pattern, $username)) {
+			return true; // Valid username
+		} else {
+			return false; // Invalid username
+		}
+	}
+
+	
 }
