@@ -33,7 +33,7 @@ class LoginController extends Controller{
 				$this->rememberMe();
 				$this->createUserSession($loggedInUser);
 			}else{
-				invalidLoginNotify();
+				$this->invalidLoginNotify();
 			}
 		}
 	}
@@ -63,7 +63,7 @@ class LoginController extends Controller{
 
 	public function validate($data) {
 		if (!arrayEmptyValidate($data)) {
-			anyFieldEmptyNotify();
+			$this->anyFieldEmptyNotify();
 		}
 	}
 
