@@ -13,6 +13,10 @@
         placeholder="Username/Email...">
         <input type="password" name="userPassword"
         placeholder="Password...">
+		<div class="remember-me-container">
+			<input type="checkbox" id="remember-me" name="remember-me" value="login">
+			<p class="remember-me-text">Remember me</p>
+		</div>
         <button type="submit" name="submit">Log In</button>
     </form>
 

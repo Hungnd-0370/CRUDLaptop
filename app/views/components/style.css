@@ -210,3 +210,20 @@
 	color: #fff;
 	cursor: pointer;
   }
+
+  .remember-me-container {
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	gap: 10px;
+  }
+
+  input#remember-me {
+	width: 20px;
+	height: 20px;
+  }
+
+  .remember-me-text {
+	font-size: 16px;
+	font-weight: 700;
+  }
