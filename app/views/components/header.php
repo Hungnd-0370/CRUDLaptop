@@ -30,7 +30,13 @@
                 </nav>
 				<div>
 					<div class="list-item">
-						<a class="nav__link" onclick="location.pathname='login'" style="cursor: pointer">Login</a>
+						<!-- <a class="nav__link" onclick="location.pathname='login'" style="cursor: pointer">Login</a> -->
+
+						<?php if(!isset($_SESSION['userId'])) : ?>
+							<a class="nav__link" onclick="location.pathname='login'" style="cursor: pointer">Login</a>
+						<?php else: ?>
+							<a class="nav__link" onclick="location.pathname='logout'" style="cursor: pointer"><li>Logout</li></a>
+						<?php endif; ?>
                     </div>
 				</div>
             </div>
