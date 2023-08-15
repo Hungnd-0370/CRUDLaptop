@@ -10,9 +10,5 @@ class Controller {
 			
 			require_once __DIR_ROOT.'/app/views/'.$view.'.php';
 		};
-
-		$template = new Template;
-
-		$template->run();
 	}
 }
