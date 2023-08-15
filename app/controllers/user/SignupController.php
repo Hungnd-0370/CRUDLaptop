@@ -15,10 +15,9 @@ class SignupController extends Controller{
 		$this->render('user/signup');
 	}
 
-	public function sendRequest() {
+	public function processUserRegistration() {
 		
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['type'] == 'register') {
-
 			$data = [
 				'userName' => trim($_POST['userName']),
 				'userEmail' => trim($_POST['userEmail']),

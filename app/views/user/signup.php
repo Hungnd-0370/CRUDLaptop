@@ -6,7 +6,7 @@
 
     <?php flash('register') ?>
 
-    <form method="post" action="/signup/sendRequest">
+    <form method="post" action="/signup/processUserRegistration">
         <input type="hidden" name="type" value="register">
         <input type="text" name="userName" 
         placeholder="Full name...">
