@@ -34,8 +34,9 @@
 
 						<?php if(!isset($_SESSION['userId'])) : ?>
 							<a class="nav__link" onclick="location.pathname='login'" style="cursor: pointer">Login</a>
+							<a class="nav__link" onclick="location.pathname='signup'" style="cursor: pointer">Signup</a>
 						<?php else: ?>
-							<a class="nav__link" onclick="location.pathname='logout'" style="cursor: pointer"><li>Logout</li></a>
+							<a class="nav__link" onclick="location.pathname='logout'" style="cursor: pointer">Logout</a>
 						<?php endif; ?>
                     </div>
 				</div>
