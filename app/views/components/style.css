@@ -198,13 +198,13 @@
 	justify-content: center;
 	margin-top: 20px;
   }
-
+  .add-button,
   .operations button {
 	padding: 9px 20px;
 	font-weight: 700;
 	border: 2px solid #000;
   }
-
+  .add-button:hover,
   .operations button:hover {
 	background-color: #3d5c98;
 	color: #fff;
@@ -227,3 +227,15 @@
 	font-size: 16px;
 	font-weight: 700;
   }
+
+  /* .add-button {
+	padding: 9px 20px;
+	font-weight: 700;
+	border: 2px solid #000;
+  }
+
+  .add-button:hover {
+	background-color: #3d5c98;
+	color: #fff;
+	cursor: pointer;
+  } */

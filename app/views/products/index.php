@@ -1,6 +1,8 @@
 <h1 class="header">Products</h1>
-
 <div class="products-container">
+	<div style="display: flex; justify-content:flex-start; margin-bottom: 20px">
+		<button class="add-button">Add Product</button>
+	</div>
 	<div class="products-grid-container">
 		<?php foreach ($productsList as $index=>$product): 
 
