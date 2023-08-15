@@ -13,7 +13,7 @@
     <nav>
         <ul>
             <a onclick="location.pathname='home/index'"><li>Home</li></a>
-            <?php if(!isset($_SESSION['usersId'])) : ?>
+            <?php if(!isset($_SESSION['userId'])) : ?>
                 <a onclick="location.pathname='signup'"><li>Sign Up</li></a>
                 <a onclick="location.pathname='login'"><li>Login</li></a>
             <?php else: ?>
