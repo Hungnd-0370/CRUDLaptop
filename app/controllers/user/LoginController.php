@@ -37,7 +37,18 @@ class LoginController extends Controller{
 				$loggedInUser = $this->userMapper->login($data['name/email'], $data['userPassword']);
 				
 				if($loggedInUser){
+
+					if (isset($_POST['remember-me'])) {
+						setcookie("remembered_email", $_POST['name/email'], time() + (30 * 24 * 60 * 60), "/");
+						setcookie("remembered_password", $_POST['userPassword'], time() + (30 * 24 * 60 * 60), "/");
+					} else {
+						// If "Remember Me" is unchecked, clear the remembered values
+						setcookie("remembered_email", "", time() - 3600, "/");
+						setcookie("remembered_password", "", time() - 3600, "/");
+					}
+					
 					$this->createUserSession($loggedInUser);
+
 				}else{
 					flash("login", "Password Incorrect");
 					redirect(_WEB_ROOT.'/login');
