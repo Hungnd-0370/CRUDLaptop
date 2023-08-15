@@ -31,24 +31,24 @@ class App {
 		$urlArr = array_values($urlArr);
 
 		if (strcmp($urlArr[0], 'signup') == 0) {
-			$this->__controller = 'Signup';
+			$this->__controller = 'SignupController';
 			$controllerFolder = 'user';
 			
 		} elseif (strcmp($urlArr[0], 'login') == 0) {
-			$this->__controller = 'Login';
+			$this->__controller = 'LoginController';
 			$controllerFolder = 'user';
 
 		} elseif(!empty($urlArr[0])) {
 
 			$controllerFolder = $urlArr[0];
-			$this->__controller = ucfirst($urlArr[0]);
+			$this->__controller = ucfirst($urlArr[0]).'Controller';
 		} 
 
-		if(file_exists('app/controllers/'.$controllerFolder.'/'.($this->__controller).'Controller.php')) {
+		if(file_exists('app/controllers/'.$controllerFolder.'/'.($this->__controller).'.php')) {
 
-			require_once 'app/controllers/'.$controllerFolder.'/'.($this->__controller).'Controller.php';
+			require_once 'app/controllers/'.$controllerFolder.'/'.($this->__controller).'.php';
 			$this->__controller = new $this->__controller();
-			
+
 		} else {
 			$this->loadError();
 		}

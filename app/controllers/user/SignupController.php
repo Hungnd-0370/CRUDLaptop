@@ -3,7 +3,7 @@ require_once __DIR_ROOT.'/core/Controller.php';
 require_once __DIR_ROOT.'/helpers/session_helper.php';
 require_once __DIR_ROOT.'/app/models/user/mappers/UserMapper.php';
 
-class Signup extends Controller{
+class SignupController extends Controller{
 
 	private $userMapper;
 
