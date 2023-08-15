@@ -8,15 +8,14 @@ class LoginController extends Controller{
 	private $userMapper;
 
 	public function __construct() {
-
 		$this->userMapper = new UserMapper;
 	}
 
-	public function index() {
+	public function index() {  // /signup/
 		$this->render('user/login');
 	}
 
-	public function sendRequest() {
+	public function sendRequest() {  // signup/sendRequest
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['type'] == 'login') {
 
@@ -25,37 +24,16 @@ class LoginController extends Controller{
 				'userPassword' => trim($_POST['userPassword'])
 			];
 
-			if(empty($data['name/email']) || empty($data['userPassword'])){
-				flash("login", "Please fill out all inputs");
-				redirect(_WEB_ROOT.'/login');
-				exit();
-			}
+			$this->validate($data);
 
-			//Check for user/email
-			if($this->userMapper->findUserByEmailOrUsername($data['name/email'], $data['name/email'])){
-
-				$loggedInUser = $this->userMapper->login($data['name/email'], $data['userPassword']);
+			$loggedInUser = $this->userMapper->login($data['name/email'], $data['userPassword']);
 				
-				if($loggedInUser){
-
-					if (isset($_POST['remember-me'])) {
-						setcookie("remembered_email", $_POST['name/email'], time() + (30 * 24 * 60 * 60), "/");
-						setcookie("remembered_password", $_POST['userPassword'], time() + (30 * 24 * 60 * 60), "/");
-					} else {
-						// If "Remember Me" is unchecked, clear the remembered values
-						setcookie("remembered_email", "", time() - 3600, "/");
-						setcookie("remembered_password", "", time() - 3600, "/");
-					}
+			if($loggedInUser){
 					
-					$this->createUserSession($loggedInUser);
-
-				}else{
-					flash("login", "Password Incorrect");
-					redirect(_WEB_ROOT.'/login');
-				}
+				$this->rememberMe();
+				$this->createUserSession($loggedInUser);
 			}else{
-				flash("login", "No user found");
-				redirect(_WEB_ROOT.'/login');
+				invalidLoginNotify();
 			}
 		}
 	}
@@ -70,10 +48,32 @@ class LoginController extends Controller{
     }
 
 	public function rememberMe() {
-	
-		if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['type'] == 'remember-me') {
-			echo "remembered";
+
+		if (isset($_POST['remember-me'])) {
+
+			setcookie("remembered_email", $_POST['name/email'], time() + (30 * 24 * 60 * 60), "/");
+			setcookie("remembered_password", $_POST['userPassword'], time() + (30 * 24 * 60 * 60), "/");
+
+		} else {
+			// If "Remember Me" is unchecked, clear the remembered values
+			setcookie("remembered_email", "", time() - 3600, "/");
+			setcookie("remembered_password", "", time() - 3600, "/");
 		}
 	}
 
+	public function validate($data) {
+		if (!arrayEmptyValidate($data)) {
+			anyFieldEmptyNotify();
+		}
+	}
+
+	public function invalidLoginNotify() {
+		flash("login", "Username/email or password are incorrect");
+		redirect(_WEB_ROOT.'/login');
+	}
+
+	public function anyFieldEmptyNotify() {
+		flash("login", "Please fill out all inputs");
+		redirect(_WEB_ROOT.'/login');
+	}
 }

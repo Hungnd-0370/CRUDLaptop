@@ -36,6 +36,7 @@ class UserMapper {
         $hashedPassword = $row->userPassword;
 
         if(password_verify($password, $hashedPassword)){
+			
             return $row;
         }else{
             return false;
