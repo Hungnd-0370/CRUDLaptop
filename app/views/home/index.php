@@ -1,5 +1,4 @@
 <?php 
-	session_start(); 
     include_once __DIR_ROOT.'/app/views/components/Header.php'
 ?>
     <h1 id="index-text">Welcome, <?php

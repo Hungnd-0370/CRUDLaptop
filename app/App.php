@@ -30,20 +30,31 @@ class App {
 		$urlArr = array_filter(explode('/', $url));
 		$urlArr = array_values($urlArr);
 
-		if (strcmp($urlArr[0], 'signup') == 0) {
-			
-			$this->__controller = 'SignupController';
-			$controllerFolder = 'user';
-			
-		} elseif (strcmp($urlArr[0], 'login') == 0) {
-			$this->__controller = 'LoginController';
-			$controllerFolder = 'user';
+		if (!empty($urlArr[0])) {
+			if (strcmp($urlArr[0], 'signup') == 0) {
+	
+				$this->__controller = 'SignupController';
+				$controllerFolder = 'user';
+				
+			} elseif (strcmp($urlArr[0], 'login') == 0) {
+	
+				$this->__controller = 'LoginController';
+				$controllerFolder = 'user';
+	
+			} elseif (strcmp($urlArr[0], 'logout') == 0) {
+	
+				require_once 'app/controllers/user/LogoutController.php';
+				call_user_func_array([new LogoutController, 'logout'], []);
+			} else {
 
-		} elseif(!empty($urlArr[0])) {
+				$controllerFolder = $urlArr[0];
+				$this->__controller = ucfirst($urlArr[0]).'Controller';
+			}
 
-			$controllerFolder = $urlArr[0];
-			$this->__controller = ucfirst($urlArr[0]).'Controller';
-		} 
+		} else {
+
+			redirect(_WEB_ROOT.'/home');
+		}
 
 		if(file_exists('app/controllers/'.$controllerFolder.'/'.($this->__controller).'.php')) {
 
