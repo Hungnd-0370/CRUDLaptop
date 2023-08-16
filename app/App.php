@@ -39,16 +39,14 @@ class App {
 			$this->__controller = 'LoginController';
 			$controllerFolder = 'user';
 
-		} elseif(!empty($urlArr[0])) {
+		}elseif (strcmp($urlArr[0], 'product') == 0){
+            $controllerFolder = $urlArr[0];
+            $this->__controller = ucfirst($urlArr[0]).'Controller';
 
+        } elseif(!empty($urlArr[0])) {
 			$controllerFolder = $urlArr[0];
 			$this->__controller = ucfirst($urlArr[0]).'Controller';
 		}
-
-        if (strcmp($urlArr[0], 'product') == 0){
-            $controllerFolder = $urlArr[0];
-            $this->__controller = ucfirst($urlArr[0]).'Controller';
-        }
 
 		if(file_exists('app/controllers/'.$controllerFolder.'/'.($this->__controller).'.php')) {
 

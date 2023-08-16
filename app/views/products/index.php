@@ -30,9 +30,13 @@
 				</div>
 			</div>
 			<div class="operations">
-				<button>Modify</button>
+				<button >Modify</button>
 				<button>Remove</button>
-				<button>Detail</button>
+				<button type="button" formaction="/test">
+                    <a href="/product/detail/<?php echo $product->product_id ?>" >
+                        Detail
+                    </a>
+                </button>
 			</div>
 		</div>
 		<?php endforeach; ?>

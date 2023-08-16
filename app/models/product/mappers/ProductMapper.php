@@ -37,4 +37,13 @@ class ProductMapper {
             return false;
         }
     }
+
+    function detailProduct($id){
+        $this->db->query('SELECT * FROM product WHERE product_id = :id');
+        $this->db->bind(':id', $id);
+
+        $detailProduct = $this->db->resultSet();
+
+        return $detailProduct;
+    }
 }
