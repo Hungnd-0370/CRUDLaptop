@@ -129,12 +129,18 @@
   .product-card {
     width: 25vw;
     height: max-content;
-    border: 3px solid #000;
+    border:  none;
 	margin-bottom: 30px;
 	padding-bottom: 30px;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	background-color: hsla(192, 31%, 66%, 0.161);
   }
 
-  .product-id,
+  .product-id {
+	font-size: 20px;
+	letter-spacing: 1.5px;
+  }
+
   .product-name,
   .product-version,
   .product-color,
