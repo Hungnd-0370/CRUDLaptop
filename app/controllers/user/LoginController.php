@@ -29,11 +29,10 @@ class LoginController extends Controller{
 			$loggedInUser = $this->userMapper->login($data['name/email'], $data['userPassword']);
 				
 			if($loggedInUser){
-					
 				$this->rememberMe();
 				$this->createUserSession($loggedInUser);
 			}else{
-				invalidLoginNotify();
+				$this->invalidLoginNotify();
 			}
 		}
 	}
@@ -63,7 +62,7 @@ class LoginController extends Controller{
 
 	public function validate($data) {
 		if (!arrayEmptyValidate($data)) {
-			anyFieldEmptyNotify();
+			$this->anyFieldEmptyNotify();
 		}
 	}
 
