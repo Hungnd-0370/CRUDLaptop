@@ -23,3 +23,7 @@ require_once 'configs/routes.php';
 require_once 'app/App.php';
 
 require_once 'core/Controller.php';
+
+require_once 'helpers/validate.php';
+
+require_once 'helpers/session_helper.php';

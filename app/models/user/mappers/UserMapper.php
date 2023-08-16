@@ -13,12 +13,12 @@ class UserMapper {
 	public function register($data) {
 
 		$this->db->query('INSERT INTO user (userName, userEmail, UserId, userPassword)
-			VALUES (:name, :email, :id, :password)');
+			VALUES (:userName, :userEmail, :UserId, :userPassword)');
 
-		$this->db->bind(':name', $data['userName']);
-		$this->db->bind(':email', $data['userEmail']);
-		$this->db->bind(':id', $data['userId']);
-		$this->db->bind(':password', $data['userPassword']);
+		$this->db->bind(':userName', $data['userName']);
+		$this->db->bind(':userEmail', $data['userEmail']);
+		$this->db->bind(':UserId', $data['userId']);
+		$this->db->bind(':userPassword', $data['userPassword']);
 
 		if ($this->db->execute()) {
 			return true;
@@ -28,6 +28,7 @@ class UserMapper {
 	}
 
 	public function login($nameOrEmail, $password){
+
         $row = $this->findUserByEmailOrUsername($nameOrEmail, $nameOrEmail);
 
         if($row == false) return false;
@@ -35,16 +36,18 @@ class UserMapper {
         $hashedPassword = $row->userPassword;
 
         if(password_verify($password, $hashedPassword)){
+			
             return $row;
         }else{
             return false;
         }
     }
 
-	public function findUserByEmailOrUsername($email, $username){
-        $this->db->query('SELECT * FROM user WHERE userId = :username OR userEmail = :email');
-        $this->db->bind(':username', $username);
-        $this->db->bind(':email', $email);
+	public function findUserByEmailOrUsername($email, $userName){
+
+        $this->db->query('SELECT * FROM user WHERE userId = :userName OR userEmail = :userEmail');
+        $this->db->bind(':userName', $userName);
+        $this->db->bind(':userEmail', $email);
 
         $row = $this->db->single();
 

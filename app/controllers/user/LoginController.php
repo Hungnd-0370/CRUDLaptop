@@ -8,43 +8,33 @@ class LoginController extends Controller{
 	private $userMapper;
 
 	public function __construct() {
-
 		$this->userMapper = new UserMapper;
 	}
 
-	public function index() {
+	public function index() {  // /signup/
 		$this->render('user/login');
 	}
 
-	public function sendRequest() {
+	public function sendRequest() {  // signup/sendRequest
 
-		 //Init data
-		 $data=[
-            'name/email' => trim($_POST['name/email']),
-            'userPassword' => trim($_POST['userPassword'])
-        ];
+		if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['type'] == 'login') {
 
-        if(empty($data['name/email']) || empty($data['userPassword'])){
-            flash("login", "Please fill out all inputs");
-			redirect(_WEB_ROOT.'/login');
-            exit();
-        }
+			$data=[
+				'name/email' => trim($_POST['name/email']),
+				'userPassword' => trim($_POST['userPassword'])
+			];
 
-        //Check for user/email
-        if($this->userMapper->findUserByEmailOrUsername($data['name/email'], $data['name/email'])){
+			$this->validate($data);
 
 			$loggedInUser = $this->userMapper->login($data['name/email'], $data['userPassword']);
-			
-            if($loggedInUser){
-                $this->createUserSession($loggedInUser);
-            }else{
-                flash("login", "Password Incorrect");
-                redirect(_WEB_ROOT.'/login');
-            }
-        }else{
-            flash("login", "No user found");
-            redirect(_WEB_ROOT.'/login');
-        }
+				
+			if($loggedInUser){
+				$this->rememberMe();
+				$this->createUserSession($loggedInUser);
+			}else{
+				$this->invalidLoginNotify();
+			}
+		}
 	}
 
 	public function createUserSession($user){
@@ -53,6 +43,36 @@ class LoginController extends Controller{
         $_SESSION['userName'] = $user->userName;
         $_SESSION['userEmail'] = $user->userEmail;
 
-        redirect(_WEB_ROOT.'/products');
+        redirect(_WEB_ROOT.'/home');
     }
+
+	public function rememberMe() {
+
+		if (isset($_POST['remember-me'])) {
+
+			setcookie("remembered_email", $_POST['name/email'], time() + (30 * 24 * 60 * 60), "/");
+			setcookie("remembered_password", $_POST['userPassword'], time() + (30 * 24 * 60 * 60), "/");
+
+		} else {
+			// If "Remember Me" is unchecked, clear the remembered values
+			setcookie("remembered_email", "", time() - 3600, "/");
+			setcookie("remembered_password", "", time() - 3600, "/");
+		}
+	}
+
+	public function validate($data) {
+		if (!arrayEmptyValidate($data)) {
+			$this->anyFieldEmptyNotify();
+		}
+	}
+
+	public function invalidLoginNotify() {
+		flash("login", "Username/email or password are incorrect");
+		redirect(_WEB_ROOT.'/login');
+	}
+
+	public function anyFieldEmptyNotify() {
+		flash("login", "Please fill out all inputs");
+		redirect(_WEB_ROOT.'/login');
+	}
 }
