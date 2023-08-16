@@ -1,8 +1,9 @@
 <?php
 
 require_once 'ShowProductController.php';
+require_once 'CreateProductController.php';
 
-class Product {
+class ProductController extends Controller {
 	
 	public function list() {
 		
@@ -14,5 +15,8 @@ class Product {
 		$showProductController->showProduct();
 	}
 
-
+    public function create(){
+        $createProduct = new CreateProductController();
+        $createProduct->create();
+    }
 }

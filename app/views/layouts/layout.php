@@ -1,3 +1,6 @@
+<?php
+    include_once __DIR_ROOT.'/helpers/session_helper.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
