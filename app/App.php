@@ -29,7 +29,7 @@ class App {
 		$url = $this->getUrl();
 		$urlArr = array_filter(explode('/', $url));
 		$urlArr = array_values($urlArr);
-
+    
 		if (!empty($urlArr[0])) {
 			if (strcmp($urlArr[0], 'signup') == 0) {
 	

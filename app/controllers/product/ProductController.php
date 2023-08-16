@@ -1,18 +1,22 @@
 <?php
 
-require_once 'ShowProductController.php';
+require_once 'DetailProductController.php';
+require_once 'CreateProductController.php';
 
-class Product {
+class ProductController extends Controller {
 	
 	public function list() {
 		
 	}
 	
-	public function detail() {
-
-		$showProductController = new ShowProductController;
-		$showProductController->showProduct();
+	public function detail($id) {
+		$showProductController = new DetailProductController;
+		$showProductController->detail($id);
 	}
 
+    public function create(){
+        $createProduct = new CreateProductController();
+        $createProduct->create();
+    }
 
 }

@@ -1,7 +1,7 @@
 <h1 class="header">Products</h1>
 <div class="products-container">
 	<div style="display: flex; justify-content:flex-start; margin-bottom: 20px">
-		<button class="add-button">Add Product</button>
+		<button class="add-button" id="btnModalCreateProduct">Add Product</button>
 	</div>
 	<div class="products-grid-container">
 		<?php foreach ($productsList as $index=>$product): 
@@ -30,11 +30,19 @@
 				</div>
 			</div>
 			<div class="operations">
-				<button>Modify</button>
+				<button >Modify</button>
 				<button>Remove</button>
-				<button>Detail</button>
+				<button type="button" formaction="/test">
+                    <a href="/product/detail/<?php echo $product->product_id ?>" >
+                        Detail
+                    </a>
+                </button>
 			</div>
 		</div>
 		<?php endforeach; ?>
 	</div>
 </div>
+<?php
+    $this->render('product/create');
+?>
+
