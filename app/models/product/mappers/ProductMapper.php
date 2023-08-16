@@ -7,13 +7,13 @@ class ProductMapper {
 
 	private $db;
 
-	public function __construct() {    
+	public function __construct() {
         $this->db = new Database;
     }
 
 	function getProductsList() {
 
-		$this->db->query('SELECT * FROM product');
+		$this->db->query('SELECT * FROM product;');
 		$productsList = $this->db->resultSet();
 
 		return $productsList;
@@ -22,14 +22,14 @@ class ProductMapper {
     function createProduct(Product $product) {
 
         $this->db->query('INSERT INTO product (product_id, product_name, product_version, product_color, product_price, product_description)
-			VALUES (:id, :name, :version, :color, :price, :description)');
+			VALUES (:product_id, :product_name, :product_version, :product_color, :product_price, :product_description)');
 
-        $this->db->bind(':id', $product->getProductId());
-        $this->db->bind(':name', $product->getProductName());
-        $this->db->bind(':version', $product->getProductVersion());
-        $this->db->bind(':color', $product->getProductColor());
-        $this->db->bind(':price', $product->getProductPrice());
-        $this->db->bind(':description', $product->getProductDescription());
+        $this->db->bind(':product_id', $product->getProductId());
+        $this->db->bind(':product_name', $product->getProductName());
+        $this->db->bind(':product_version', $product->getProductVersion());
+        $this->db->bind(':product_color', $product->getProductColor());
+        $this->db->bind(':product_price', $product->getProductPrice());
+        $this->db->bind(':product_description', $product->getProductDescription());
 
         if ($this->db->execute()) {
             return true;
@@ -55,10 +55,10 @@ class ProductMapper {
         }
     }
 
-    function detailProduct($id){
-        $this->db->query('SELECT * FROM product WHERE product_id = :id');
-        $this->db->bind(':id', $id); // gan :id vs bien $id
 
+    function getProductDetail($productId){
+        $this->db->query('SELECT * FROM product WHERE product_id = :product_id');
+        $this->db->bind(':product_id', $productId);
         $detailProduct = $this->db->resultSet();// chuyen thanh mang doi tuong
 
         return $detailProduct;

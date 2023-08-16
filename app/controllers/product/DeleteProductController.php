@@ -13,7 +13,7 @@ class DeleteProductController extends Controller{
 
     public function handleBtnDelete($id){
         // check xem co ton tai id ko 
-        $product = $this->productMapper->detailProduct($id);
+        $product = $this->productMapper->getProductDetail($id);
 		if (!empty($product)){
             $data = [];
             $data['subContent']['productInfo'] = $product;
@@ -24,7 +24,7 @@ class DeleteProductController extends Controller{
     }
     public function delete($id){
         // check xem co ton tai id ko 
-        $product = $this->productMapper->detailProduct($id);
+        $product = $this->productMapper->getProductDetail($id);
 		if (!empty($product)){
             if ($this->productMapper->deleteProduct($id)){
                 redirect(_WEB_ROOT.'/products');

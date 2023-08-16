@@ -11,7 +11,7 @@ class UpdateProductController extends Controller{
         $this->productMapper = new ProductMapper();
     }
     public function openModal($id){
-        $product = $this->productMapper->detailProduct($id);
+        $product = $this->productMapper->getProductDetail($id);
 
 		if (!empty($product)){
             $data = [];
