@@ -157,13 +157,11 @@
 	justify-content: center;
 	margin-top: 20px;
   }
-  .add-button,
   .operations button {
 	padding: 9px 20px;
 	font-weight: 700;
 	border: 2px solid #000;
   }
-  .add-button:hover,
   .operations button:hover {
 	background-color: #3d5c98;
 	color: #fff;
@@ -187,17 +185,19 @@
 	font-weight: 700;
   }
 
-  /* .add-button {
+  .add-button {
+	background-color: hsla(192, 31%, 66%, 0.161);
 	padding: 9px 20px;
 	font-weight: 700;
-	border: 2px solid #000;
+	border: none;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
   }
 
   .add-button:hover {
 	background-color: #3d5c98;
 	color: #fff;
 	cursor: pointer;
-  } */
+  }
 
  
   @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500&display=swap");
