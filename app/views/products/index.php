@@ -8,7 +8,7 @@
 
 		?>
 			<div class="product-card">
-			<img src="public/images/macbook3.jpeg" alt="A macbook"" width="100%" height="50%">
+			<img src="public/images/macbook3.jpeg" alt="A macbook" width="100%" height="50%">
 			<div class="product-info">
 				<div class="product-id">
 					<?php echo "Mã sản phẩm: ".($product->product_id) ?>
@@ -30,8 +30,16 @@
 				</div>
 			</div>
 			<div class="operations">
-				<button >Modify</button>
-				<button>Remove</button>
+				<button >
+					<a href="/product/update/<?php echo $product->product_id ?>" >
+                        Modify
+                    </a>
+				</button>
+				<button>
+					<a href="/product/delete/<?php echo $product->product_id ?>" >
+                        Remove
+                    </a>
+				</button>
 				<button type="button" formaction="/test">
                     <a href="/product/detail/<?php echo $product->product_id ?>" >
                         Detail
