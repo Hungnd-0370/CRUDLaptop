@@ -124,18 +124,26 @@
   .products-grid-container {
     display: grid;
     grid-template-columns: auto auto auto;
+	justify-content: space-between;
   }
 
   .product-card {
-    width: 25vw;
+    width: 27vw;
     height: max-content;
-    border: 3px solid #000;
+    border: none;
 	margin-bottom: 30px;
 	padding-bottom: 30px;
+	background-color: hsla(192, 31%, 66%, 0.161);
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	border-radius: 5px;
+  }
+
+  .product-image {
+	border-radius: 5px 5px 0 0;
+	margin-bottom: 10px;
   }
 
   .product-id,
-  .product-name,
   .product-version,
   .product-color,
   .product-price,
@@ -145,8 +153,27 @@
 	font-weight: 700;
 	margin-bottom: 10px;
   }
+  .product-price {
+	font-size: 27px;
+	color: #f83015;
+	font-weight: bold;
+  }
 
+  .product-name {
+	color: #444444e8;
+	font-weight: bold;
+	font-size: 19px;
+	margin-bottom: 15px;
+  }
 
+  .product-color,
+  .product-version {
+	color : rgba(68, 68, 68, 0.91);
+	font-weight: 400;
+	font-size: 21px;
+	font-family: Arial, Helvetica, sans-serif;
+	margin-bottom: 15px;
+  }
   .product-info {
 	padding: 5px 10px;
   }
@@ -160,12 +187,16 @@
   .operations button {
 	padding: 9px 20px;
 	font-weight: 700;
-	border: 2px solid #000;
+	border: none;
+	background-color: hsla(192, 31%, 66%, 1);
+	border-radius: 5px;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
   .operations button:hover {
 	background-color: #3d5c98;
 	color: #fff;
 	cursor: pointer;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
   }
 
   .remember-me-container {
@@ -438,6 +469,7 @@
 	height: 100%;
 	overflow: auto;
 	background-color: rgba(0, 0, 0, 0.5);
+	border-radius: 5px;
 }
 
 .modal-content {
@@ -446,6 +478,7 @@
 	padding: 20px;
 	border: 1px solid #888;
 	width: 50%;
+	border-radius: 5px;
 }
 
 .close {

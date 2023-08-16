@@ -2,7 +2,7 @@
 
     <div class="modal-content">
         <span class="close" id="closeModalBtn">&times;</span>
-        <h2>Create a product</h2>
+        <h2 style="text-align: center; margin-bottom: 50px">Create a product</h2>
         <?php flash('createProduct') ?>
         <form id="formCreateProduct" method="post" action="/product/create">
             <label for="id">ID:</label>
@@ -29,18 +29,19 @@
     <script>
         const openModalBtn = document.getElementById('btnModalCreateProduct');
         const closeModalBtn = document.getElementById('closeModalBtn');
-        const modal = document.getElementById('modalCreateProduct');
+        const createProductModal = document.getElementById('modalCreateProduct');
         const form = document.getElementById('formCreateProduct');
 
         openModalBtn.addEventListener('click', () => {
-            modal.style.display = 'block';
+            createProductModal.style.display = 'block';
         });
 
         closeModalBtn.addEventListener('click', () => {
-            modal.style.display = 'none';
+            createProductModal.style.display = 'none';
         });
 
         const formMessageRed = document.querySelector('.form-message-red');
+		
         if (formMessageRed) {
             modal.style.display = 'block';
         }

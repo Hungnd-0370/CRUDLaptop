@@ -7,13 +7,13 @@ class ProductMapper {
 
 	private $db;
 
-	public function __construct() {    
+	public function __construct() {
         $this->db = new Database;
     }
 
 	function getProductsList() {
 
-		$this->db->query('SELECT * FROM product');
+		$this->db->query('SELECT * FROM product;');
 		$productsList = $this->db->resultSet();
 
 		return $productsList;
@@ -38,7 +38,8 @@ class ProductMapper {
         }
     }
 
-    function detailProduct($id){
+    function getProductDetail($id){
+		
         $this->db->query('SELECT * FROM product WHERE product_id = :id');
         $this->db->bind(':id', $id);
 
