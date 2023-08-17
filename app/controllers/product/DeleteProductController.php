@@ -25,9 +25,9 @@ class DeleteProductController extends Controller{
         }else require_once __DIR_ROOT.'/app/errors/404.php';
     }
     public function delete($id){
-       
+        print_r($id);
         $product = $this->productMapper->getProductDetail($id);
-
+        print_r($product);
 		if (!empty($product)){
             if ($this->productMapper->deleteProduct($id)){
                 redirect(_WEB_ROOT.'/products');

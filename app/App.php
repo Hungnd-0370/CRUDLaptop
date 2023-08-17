@@ -45,10 +45,17 @@ class App {
 	
 				require_once 'app/controllers/user/LogoutController.php';
 				call_user_func_array([new LogoutController, 'logout'], []);
-			} else {
+			} elseif(strcmp($urlArr[0], 'product') == 0) {
 
 				$controllerFolder = $urlArr[0];
 				$this->__controller = ucfirst($urlArr[0]).'Controller';
+			} elseif(strcmp($urlArr[0], 'products') == 0) {
+
+				$controllerFolder = $urlArr[0];
+				$this->__controller = ucfirst($urlArr[0]).'Controller';
+			} else{
+				$controllerFolder = 'product';
+				$this->__controller = $urlArr[0];
 			}
 		} else {
 			redirect(_WEB_ROOT.'/home');

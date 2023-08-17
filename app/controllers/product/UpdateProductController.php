@@ -24,7 +24,7 @@ class UpdateProductController extends Controller{
             $data['content'] = 'product/update';
 
             $this->render('layouts/layout', $data);
-
+            
         } else {
 			require_once __DIR_ROOT.'/app/errors/404.php';
 		}

@@ -1,5 +1,6 @@
 <?php 
     $product = $productInfo[0];
+    
 ?>
 <div id="update-product-modal" class="modalUpdate">
     <div class="modal-content">
