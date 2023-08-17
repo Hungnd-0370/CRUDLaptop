@@ -1,10 +1,10 @@
 <?php 
     $product = $productInfo[0];
 ?>
-<div id="modalUpdateProduct" class="modalUpdate">
+<div id="update-product-modal" class="modalUpdate">
     <div class="modal-content">
-        <!-- <span class="close" id="closeModalBtn">&times;</span> -->
-        <h2>Update a product</h2>
+        <span class="close" id="close-modal-btn">&times;</span>
+        <h2 style="text-align: center; margin-bottom: 50px">Update a product</h2>
         <?php flash('updateProduct') ?>
         <form id="formUpdateProduct" method="post" action="/UpdateProductController/update">
             <label for="id">ID:</label>
@@ -29,23 +29,20 @@
         </form>
     </div>
     <script>
-        const openModalBtnUpdate = document.getElementById('btnModalUpdateProduct');
-        // const closeModalBtnUpdate = document.getElementById('closeModalBtn');
-        const modalUpdate = document.getElementById('modalUpdateProduct');
-        const formUpdate = document.getElementById('formUpdateProduct');
+        const closeUpdateModalBtn = document.getElementById('close-modal-btn');
+        const updateProductModal = document.getElementById('update-product-modal');
+        const updateProductForm = document.getElementById('formUpdateProduct');
 
-        openModalBtnUpdate.addEventListener('click', () => {
-            modalUpdate.style.display = 'block';
-            // setValueModalField()
+        closeUpdateModalBtn.addEventListener('click', () => {
+			console.log("run")
+            updateProductModal.style.display = 'none';
         });
 
-        // closeModalBtnUpdate.addEventListener('click', () => {
-        //     modalUpdate.style.display = 'none';
-        // });
-
         const formMessageRed = document.querySelector('.form-message-red');
+
         if (formMessageRed) {
-            modalUpdate.style.display = 'block';
+            updateProductModal.style.display = 'block';
         }
+
     </script>
 </div>
