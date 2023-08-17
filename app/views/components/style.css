@@ -73,11 +73,11 @@
   
   .form-message {
 	margin: 20px auto 0 auto;
-	border-radius: 10px;
+	border-radius: 5px;
 	text-transform: capitalize;
 	max-width: 560px;
 	width: 90%;
-	height: 80px;
+	height: 50px;
 	display: -webkit-box;
 	display: -ms-flexbox;
 	display: flex;

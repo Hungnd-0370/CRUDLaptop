@@ -6,6 +6,7 @@
 
         <?php flash('createProduct') ?>
         <form id="create-product-form" method="post" action="/product/create">
+
             <label for="id">ID:</label>
             <input type="text" id="id" name="id" >
 
@@ -38,15 +39,18 @@
             createProductModal.style.display = 'block';
         });
 
+		const formMessageRed = document.querySelector('.form-message-red');
+
         closeModalBtn.addEventListener('click', () => {
             createProductModal.style.display = 'none';
+			formMessageRed.style.display = 'none';
         });
-
-        const formMessageRed = document.querySelector('.form-message-red');
 
         if (formMessageRed) {
             createProductModal.style.display = 'block';
         }
+
+
 
     </script>
 </div>
