@@ -33,7 +33,7 @@
 				<button id = "<?php echo $product->product_id ?>" class="BtnUpdate">		
                         Update
 				</button>
-				<button product_id = "<?php echo $product->product_id ?>" class="BtnDelete">
+				<button product_id = "<?php echo $product->product_id ?>" class="delete-btn">
                         Remove
 				</button>
 				<button type="button">
