@@ -21,21 +21,25 @@ class CreateProductController extends Controller {
 		$productColor = trim($_POST['color']);
 		$productPrice = trim($_POST['price']);
 		$productDescription = trim($_POST['description']);
-
+		
+		
         $product = new Product($productId, $productName, $productVersion, $productColor, $productPrice, $productDescription);
-
-        if(emptyAttributeValidate($product)){
-
-            flash("createProduct", "Please fill out all inputs");
-            redirect(_WEB_ROOT.'/products');
-            exit();
+		
+        if(!arrayEmptyValidate([$productId, $productName, $productVersion, $productColor, $productPrice, $productDescription])){
+           $this->emptyFieldNotify();
         }
-
+		
         if ($this->productMapper->createProduct($product)){
             redirect(_WEB_ROOT.'/products');
-			
+
         }else{
             die("Something went wrong");
         }
     }
+	
+	public function emptyFieldNotify() {
+		flash("createProduct", "Please fill out all inputs");
+        redirect(_WEB_ROOT.'/products');
+		exit();
+	}
 }

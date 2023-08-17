@@ -65,5 +65,4 @@ class Product {
 	public function setProductDescription($productDescription) {
 		$this->productDescription = $productDescription;
 	}
-
 }

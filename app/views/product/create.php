@@ -1,10 +1,11 @@
-<div id="modalCreateProduct" class="modal">
+<div id="create-product-modal" class="modal">
 
     <div class="modal-content">
-        <span class="close" id="closeModalBtn">&times;</span>
+        <span class="close" id="close-modal-button">&times;</span>
         <h2 style="text-align: center; margin-bottom: 50px">Create a product</h2>
+
         <?php flash('createProduct') ?>
-        <form id="formCreateProduct" method="post" action="/product/create">
+        <form id="create-product-form" method="post" action="/product/create">
             <label for="id">ID:</label>
             <input type="text" id="id" name="id" >
 
@@ -23,14 +24,15 @@
             <label for="description">Description:</label>
             <textarea id="description" name="description" rows="5" cols="68"></textarea>
 
-            <button type="submit">Submit</button>
+            <button type="submit" name="submit">Submit</button>
         </form>
     </div>
     <script>
-        const openModalBtn = document.getElementById('btnModalCreateProduct');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-        const createProductModal = document.getElementById('modalCreateProduct');
-        const form = document.getElementById('formCreateProduct');
+
+        const openModalBtn = document.getElementById('create-product-modal-button');
+        const closeModalBtn = document.getElementById('close-modal-button');
+        const createProductModal = document.getElementById('create-product-modal');
+        const form = document.getElementById('create-product-form');
 
         openModalBtn.addEventListener('click', () => {
             createProductModal.style.display = 'block';
@@ -41,9 +43,9 @@
         });
 
         const formMessageRed = document.querySelector('.form-message-red');
-		
+
         if (formMessageRed) {
-            modal.style.display = 'block';
+            createProductModal.style.display = 'block';
         }
 
     </script>
