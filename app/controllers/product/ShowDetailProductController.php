@@ -15,7 +15,7 @@ class ShowDetailProductController extends Controller {
 
     public function detail($id) {
 		
-        $product = $this->productMapper->detailProduct($id);
+        $product = $this->productMapper->getProductDetail($id);
 
 		if (!empty($product)){
 
