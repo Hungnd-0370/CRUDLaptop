@@ -24,9 +24,8 @@ class ProductController extends Controller {
         $deleteProduct = new DeleteProductController();
         $deleteProduct->handleBtnDelete($id);
     }
-	public function update($id){
-
+	public function update(){
         $updateProduct = new UpdateProductController();
-        $updateProduct->openModal($id);
+        $updateProduct->update();
     }
 }

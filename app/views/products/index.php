@@ -30,10 +30,8 @@
 				</div>
 			</div>
 			<div class="operations">
-				<button >
-					<a href="/product/update/<?php echo $product->product_id ?>" >
+				<button id = "<?php echo $product->product_id ?>" class="BtnUpdate">		
                         Update
-                    </a>
 				</button>
 				<button>
 					<a href="/product/delete/<?php echo $product->product_id ?>" >
@@ -47,10 +45,14 @@
                 </button>
 			</div>
 		</div>
+
 		<?php endforeach; ?>
 	</div>
 </div>
 <?php
-    $this->render('product/create');
+	$dataJson = json_encode($productsList);
+	include 'C:\Users\Acer\Documents\workspace\WEB\PHP\MiniProjectPHP\CRUDLaptop\app\views\product\update.php';
+    $this->render('product/update',$productsList);
+	$this->render('product/create');
 ?>
 

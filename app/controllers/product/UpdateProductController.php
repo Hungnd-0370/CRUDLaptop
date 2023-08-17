@@ -13,25 +13,8 @@ class UpdateProductController extends Controller{
         $this->productMapper = new ProductMapper();
     }
 
-    public function openModal($id){
-
-        $product = $this->productMapper->getProductDetail($id);
-
-		if (!empty($product)){
-
-            $data = [];
-            $data['subContent']['productInfo'] = $product;
-            $data['content'] = 'product/update';
-
-            $this->render('layouts/layout', $data);
-            
-        } else {
-			require_once __DIR_ROOT.'/app/errors/404.php';
-		}
-    }
-	
     public function update(){
-
+        
 		$productId = trim($_POST['id']);
 		$productName = trim($_POST['name']);
 		$productVersion = trim($_POST['version']);
