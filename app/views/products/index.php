@@ -32,7 +32,7 @@
 			<div class="operations">
 				<button >
 					<a href="/product/update/<?php echo $product->product_id ?>" >
-                        Modify
+                        Update
                     </a>
 				</button>
 				<button>
