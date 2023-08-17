@@ -25,6 +25,7 @@ class ProductController extends Controller {
         $deleteProduct->delete();
     }
 	public function update(){
+		
         $updateProduct = new UpdateProductController();
         $updateProduct->update();
     }

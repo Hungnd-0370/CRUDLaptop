@@ -64,6 +64,7 @@ class ProductMapper {
 
         return $detailProduct;
     }
+	
     function deleteProduct($id){
         $this->db->query('DELETE FROM product WHERE product_id = :id');
         $this->db->bind(':id', $id);    
