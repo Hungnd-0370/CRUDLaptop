@@ -23,9 +23,8 @@ class CreateProductController extends Controller {
 		$productDescription = trim($_POST['description']);
 		
         if(!arrayEmptyValidate([$productId, $productName, $productVersion, $productColor, $productPrice, $productDescription])){
-           $this->emptyFieldNotify();
+           $this->anyFieldEmptyNotify();
         }
-		
 		
         $product = new Product($productId, $productName, $productVersion, $productColor, $productPrice, $productDescription);
 		
@@ -37,7 +36,7 @@ class CreateProductController extends Controller {
         }
     }
 	
-	public function emptyFieldNotify() {
+	public function anyFieldEmptyNotify() {
 		flash("createProduct", "Please fill out all inputs");
         redirect(_WEB_ROOT.'/products');
 		exit();
