@@ -5,7 +5,7 @@
 <div class="product-card">
     <img src="public/images/macbook3.jpeg" alt="A macbook" width="100%" height="50%">
     <div class="product-info">
-        <h3>Bạn có chắc muốn xóa sản phầm : </h3>
+        <h3>Are you sure to remove this product ?</h3>
         <div class="product-id">
             <?php echo "Mã sản phẩm: " . ($product->product_id) ?>
         </div>
