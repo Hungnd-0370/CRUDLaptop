@@ -22,12 +22,12 @@ class CreateProductController extends Controller {
 		$productPrice = trim($_POST['price']);
 		$productDescription = trim($_POST['description']);
 		
-		
-        $product = new Product($productId, $productName, $productVersion, $productColor, $productPrice, $productDescription);
-		
         if(!arrayEmptyValidate([$productId, $productName, $productVersion, $productColor, $productPrice, $productDescription])){
            $this->emptyFieldNotify();
         }
+		
+		
+        $product = new Product($productId, $productName, $productVersion, $productColor, $productPrice, $productDescription);
 		
         if ($this->productMapper->createProduct($product)){
             redirect(_WEB_ROOT.'/products');
