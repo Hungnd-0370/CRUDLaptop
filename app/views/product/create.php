@@ -25,7 +25,7 @@
             <label for="description">Description:</label>
             <textarea id="description" name="description" rows="5" cols="68"></textarea>
 
-            <button type="submit" name="submit">Submit</button>
+            <button type="submit" name="submit" style="cursor:pointer" class="create-product-submit-button">Submit</button>
         </form>
     </div>
     <script>

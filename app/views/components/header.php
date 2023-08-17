@@ -21,10 +21,10 @@
                 <nav class="header-nav" role="navigation">
                     <ul class="nav__list" aria-expanded="false">
                         <li class="list-item">
-							<a class="nav__link" onclick="location.pathname='home/index'" style="cursor: pointer">Home</a>
+							<a class="nav__link" href='/home' style="cursor: pointer">Home</a>
                         </li>
                         <li class="list-item">
-                            <a class="nav__link" onclick="location.pathname='products'" style="cursor: pointer">Products</a>
+                            <a class="nav__link" href='/products' style="cursor: pointer">Products</a>
                         </li>
                     </ul>
                 </nav>
@@ -33,10 +33,10 @@
 						<!-- <a class="nav__link" onclick="location.pathname='login'" style="cursor: pointer">Login</a> -->
 
 						<?php if(!isset($_SESSION['userId'])) : ?>
-							<a class="nav__link" onclick="location.pathname='login'" style="cursor: pointer">Login</a>
-							<a class="nav__link" onclick="location.pathname='signup'" style="cursor: pointer">Signup</a>
+							<a class="nav__link" href='/login' style="cursor: pointer">Login</a>
+							<a class="nav__link" href='/signup' style="cursor: pointer">Signup</a>
 						<?php else: ?>
-							<a class="nav__link" onclick="location.pathname='logout'" style="cursor: pointer">Logout</a>
+							<a class="nav__link" href='/logout' style="cursor: pointer">Logout</a>
 						<?php endif; ?>
                     </div>
 				</div>
