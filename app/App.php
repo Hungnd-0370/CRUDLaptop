@@ -45,14 +45,6 @@ class App {
 	
 				require_once 'app/controllers/user/LogoutController.php';
 				call_user_func_array([new LogoutController, 'logout'], []);
-			} elseif(strcmp($urlArr[0], 'product') == 0) {
-
-				$controllerFolder = $urlArr[0];
-				$this->__controller = ucfirst($urlArr[0]).'Controller';
-			} elseif(strcmp($urlArr[0], 'products') == 0) {
-
-				$controllerFolder = $urlArr[0];
-				$this->__controller = ucfirst($urlArr[0]).'Controller';
 			} else{
 				$controllerFolder = $urlArr[0];
 				$this->__controller = ucfirst($urlArr[0]).'Controller';
