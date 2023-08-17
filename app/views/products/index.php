@@ -52,7 +52,7 @@
 <?php
 	$dataJson = json_encode($productsList);
 	include 'C:\Users\Acer\Documents\workspace\WEB\PHP\MiniProjectPHP\CRUDLaptop\app\views\product\update.php';
-    $this->render('product/update',$productsList);
 	$this->render('product/create');
+    $this->render('product/update');
 ?>
 

@@ -22,10 +22,6 @@ class UpdateProductController extends Controller{
 		$productPrice = trim($_POST['price']);
 		$productDescription = trim($_POST['description']);
 		
-		if(!arrayEmptyValidate([$productId, $productName, $productVersion, $productColor, $productPrice, $productDescription])){
-			$this->anyElementEmptyNotify();
-		}
-		
         $product = new Product($productId, $productName, $productVersion, $productColor, $productPrice, $productDescription);
 
         if ($this->productMapper->updateProduct($product)){
@@ -35,11 +31,6 @@ class UpdateProductController extends Controller{
         }
     }
 
-	public function anyElementEmptyNotify () {
-		flash("updateProduct", "Please fill out all inputs");
-		redirect(_WEB_ROOT.'/products');
-		exit();
-	}
 }
 
 ?>

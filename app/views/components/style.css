@@ -573,4 +573,7 @@
 	letter-spacing: 0.5px;
 	line-height: 1.6;
 }
-                
+#validate-alert{
+	color: #f83015;
+	text-align: center;
+}         
