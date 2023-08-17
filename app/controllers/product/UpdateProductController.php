@@ -21,7 +21,7 @@ class UpdateProductController extends Controller{
 
             $data = [];
             $data['subContent']['productInfo'] = $product;
-            $data['content'] = 'product/modify';
+            $data['content'] = 'product/update';
 
             $this->render('layouts/layout', $data);
 
@@ -29,6 +29,7 @@ class UpdateProductController extends Controller{
 			require_once __DIR_ROOT.'/app/errors/404.php';
 		}
     }
+	
     public function update(){
 
 		$productId = trim($_POST['id']);
