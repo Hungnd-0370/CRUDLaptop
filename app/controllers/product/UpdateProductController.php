@@ -13,35 +13,14 @@ class UpdateProductController extends Controller{
         $this->productMapper = new ProductMapper();
     }
 
-    public function openModal($id){
-
-        $product = $this->productMapper->getProductDetail($id);
-
-		if (!empty($product)){
-
-            $data = [];
-            $data['subContent']['productInfo'] = $product;
-            $data['content'] = 'product/update';
-
-            $this->render('layouts/layout', $data);
-
-        } else {
-			require_once __DIR_ROOT.'/app/errors/404.php';
-		}
-    }
-	
     public function update(){
-
+        
 		$productId = trim($_POST['id']);
 		$productName = trim($_POST['name']);
 		$productVersion = trim($_POST['version']);
 		$productColor = trim($_POST['color']);
 		$productPrice = trim($_POST['price']);
 		$productDescription = trim($_POST['description']);
-		
-		if(!arrayEmptyValidate([$productId, $productName, $productVersion, $productColor, $productPrice, $productDescription])){
-			$this->anyElementEmptyNotify();
-		}
 		
         $product = new Product($productId, $productName, $productVersion, $productColor, $productPrice, $productDescription);
 
@@ -52,11 +31,6 @@ class UpdateProductController extends Controller{
         }
     }
 
-	public function anyElementEmptyNotify () {
-		flash("updateProduct", "Please fill out all inputs");
-		redirect(_WEB_ROOT.'/products');
-		exit();
-	}
 }
 
 ?>

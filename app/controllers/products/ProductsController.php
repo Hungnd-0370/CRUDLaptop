@@ -11,7 +11,7 @@ class ProductsController extends Controller{
 		$productMapper = new ProductMapper;
 
 		$this->data['subContent']['productsList'] = $productMapper->getProductsList();
-
+		
 		$this->data['content'] = 'products/index';
 	
 		$this->render('layouts/layout', $this->data);

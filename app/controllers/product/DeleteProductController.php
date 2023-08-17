@@ -10,24 +10,10 @@ class DeleteProductController extends Controller{
     public function __construct(){
           $this->productMapper = new ProductMapper();  
     }
-
-    public function handleBtnDelete($id){
-        
+    public function delete(){
+        $id = trim($_POST['id']);
+        echo $id;
         $product = $this->productMapper->getProductDetail($id);
-
-		if (!empty($product)){
-			
-            $data = [];
-            $data['subContent']['productInfo'] = $product;
-            $data['content'] = 'product/delete';
-
-            $this->render('layouts/layout', $data);
-        }else require_once __DIR_ROOT.'/app/errors/404.php';
-    }
-    public function delete($id){
-       
-        $product = $this->productMapper->getProductDetail($id);
-
 		if (!empty($product)){
             if ($this->productMapper->deleteProduct($id)){
                 redirect(_WEB_ROOT.'/products');

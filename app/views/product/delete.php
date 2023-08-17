@@ -1,30 +1,43 @@
-<?php 
-    $product = $productInfo[0];
-?>
-
-<div class="product-card">
-    <img src="public/images/macbook3.jpeg" alt="A macbook" width="100%" height="50%">
-    <div class="product-info">
-        <h3>Are you sure to remove this product ?</h3>
-        <div class="product-id">
-            <?php echo "Mã sản phẩm: " . ($product->product_id) ?>
-        </div>
-        <div class="product-name">
-            <?php echo "Tên sản phẩm: " . ($product->product_name) ?>
-        </div>
-        <div class="product-version">
-            <?php echo "Phiên bản:" . ($product->product_version) ?>
-        </div>
-        <button type="button" formaction="/test">
-            <a href="/DeleteProductController/delete/<?php echo $product->product_id ?>" >
-                YES
-            </a>
-        </button>
-        <button type="button" formaction="/test">
+<div id="delete-product-modal" class="modal" >
+    <div class="modal-content">
+        <span class="close" id="close-modalDelete-btn">&times;</span>
+        <h2 style="text-align: center; margin-bottom: 50px">Delete a product</h2>
+        <form id="formDeleteProduct" method="post" action="/product/delete">
+            <h3>Bạn có chắc muốn xóa Sản phẩm <span id="idProduct">ABC</span></h3>
+            <div style="display: none">
+                <input type="text" id="idDelete" name="id" readonly >
+            </div>
+            <button type="submit">YES</button>
+            <button type="button" formaction="/test">
             <a href="/products" >
                 NO
             </a>
         </button>
-    </div>
+        </form>
     </div>
 </div>
+<script>
+    const openModalDeleteBtn = document.querySelectorAll('.BtnDelete');
+    const closeModalDeleteBtn = document.getElementById('close-modalDelete-btn');
+    const deleteProductModal = document.getElementById('delete-product-modal');
+    
+    var dataJson = <?php echo $dataJson ?>;
+
+    openModalDeleteBtn.forEach(btn => btn.addEventListener('click', () => {
+        deleteProductModal.style.display = 'block';
+        var id_product = btn.getAttribute('product_id');
+        dataJson.forEach(product => {
+            if(product.product_id == id_product){
+                var idProduct  =  document.getElementById('idProduct');
+                idProduct.innerText = product.product_id;
+                var idInput  =  document.getElementById('idDelete');
+                idInput.value = product.product_id;
+            }
+        })
+    }));
+
+    closeModalDeleteBtn.addEventListener('click', () => {
+        deleteProductModal.style.display = 'none';
+    });
+
+</script>
