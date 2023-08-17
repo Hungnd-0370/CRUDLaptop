@@ -49,8 +49,5 @@
         if (formMessageRed) {
             createProductModal.style.display = 'block';
         }
-
-
-
     </script>
 </div>
