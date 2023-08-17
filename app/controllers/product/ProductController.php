@@ -19,10 +19,10 @@ class ProductController extends Controller {
         $createProduct->create();
     }
 
-	public function delete($id){
+	public function delete(){
 
         $deleteProduct = new DeleteProductController();
-        $deleteProduct->handleBtnDelete($id);
+        $deleteProduct->delete();
     }
 	public function update(){
         $updateProduct = new UpdateProductController();

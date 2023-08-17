@@ -54,8 +54,8 @@ class App {
 				$controllerFolder = $urlArr[0];
 				$this->__controller = ucfirst($urlArr[0]).'Controller';
 			} else{
-				$controllerFolder = 'product';
-				$this->__controller = $urlArr[0];
+				$controllerFolder = $urlArr[0];
+				$this->__controller = ucfirst($urlArr[0]).'Controller';
 			}
 		} else {
 			redirect(_WEB_ROOT.'/home');

@@ -33,10 +33,8 @@
 				<button id = "<?php echo $product->product_id ?>" class="BtnUpdate">		
                         Update
 				</button>
-				<button>
-					<a href="/product/delete/<?php echo $product->product_id ?>" >
+				<button product_id = "<?php echo $product->product_id ?>" class="BtnDelete">
                         Remove
-                    </a>
 				</button>
 				<button type="button">
                     <a href="/product/detail/<?php echo $product->product_id ?>" >
@@ -52,7 +50,9 @@
 <?php
 	$dataJson = json_encode($productsList);
 	include 'C:\Users\Acer\Documents\workspace\WEB\PHP\MiniProjectPHP\CRUDLaptop\app\views\product\update.php';
+	include 'C:\Users\Acer\Documents\workspace\WEB\PHP\MiniProjectPHP\CRUDLaptop\app\views\product\delete.php';
 	$this->render('product/create');
     $this->render('product/update');
+	$this->render('product/delete');
 ?>
 
