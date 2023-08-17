@@ -42,7 +42,7 @@ class LoginController extends Controller{
         $_SESSION['userId'] = $user->userId;
         $_SESSION['userName'] = $user->userName;
         $_SESSION['userEmail'] = $user->userEmail;
-
+		
         redirect(_WEB_ROOT.'/home');
     }
 

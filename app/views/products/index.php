@@ -49,8 +49,8 @@
 </div>
 <?php
 	$dataJson = json_encode($productsList);
-	include 'C:\Users\Acer\Documents\workspace\WEB\PHP\MiniProjectPHP\CRUDLaptop\app\views\product\update.php';
-	include 'C:\Users\Acer\Documents\workspace\WEB\PHP\MiniProjectPHP\CRUDLaptop\app\views\product\delete.php';
+	include __DIR_ROOT.'/app/views/product/update.php';
+	include __DIR_ROOT.'/app/views/product/delete.php';
 	$this->render('product/create');
     $this->render('product/update');
 	$this->render('product/delete');
