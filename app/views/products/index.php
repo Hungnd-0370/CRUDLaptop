@@ -8,11 +8,8 @@
 		<button class="add-button" id="create-product-modal-button">Add Product</button>
 	</div>
 	<div class="products-grid-container">
-		<?php foreach ($productsList as $index=>$product): 
-			// var_dump($index);
-		?>
+		<?php foreach ($productsList as $index=>$product): ?>
 			<div class="product-card">
-
 			<img class="product-image" src="public/images/macbook<?php echo $index%5 + 1 ?>.jpeg" alt="A macbook"" width="100%" height="50%">
 
 			<div class="product-info">
@@ -43,7 +40,7 @@
                         Remove
                     </a>
 				</button>
-				<button type="button" formaction="/test">
+				<button type="button">
                     <a href="/product/detail/<?php echo $product->product_id ?>" >
                         Detail
                     </a>
