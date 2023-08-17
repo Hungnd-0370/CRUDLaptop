@@ -32,6 +32,7 @@ class ProductMapper {
         $this->db->bind(':product_description', $product->getProductDescription());
 
         if ($this->db->execute()) {
+			
             return true;
         } else {
             return false;
