@@ -509,3 +509,68 @@
 	background-color: #3d5c98;
 	color: #fff
 }
+
+.product-detail {
+	display: grid;
+	grid-template-columns: 1fr 1fr; 
+	margin: 50px 20px;
+	gap: 20px;
+	height: auto;
+	align-items: center;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	padding: 10px;
+	border-radius: 8px;
+}
+.product-detail-image {
+	border-radius: 8px;
+}
+.product-info {
+	padding: 50px 20px;
+	height: 100%;
+}
+
+.product-detail-id {
+	letter-spacing: 2px;
+	font-size: 23px;
+	font-weight: bold;
+	margin-bottom: 25px;
+	color: #8d8b8b
+}
+
+.product-detail-name {
+	font-size: 30px;
+	letter-spacing: 1px;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.product-detail-version {
+	font-size: 20px;
+	letter-spacing: 1px;
+	margin-bottom: 15px;
+}
+
+.product-detail-color {
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 75px;
+	text-transform: uppercase;
+}
+@import url('https://fonts.cdnfonts.com/css/cash-currency');
+
+.product-detail-price {
+	font-size: 40px;
+	font-weight: bold;
+	color: red;
+	font-family: 'Cash Currency', sans-serif;
+	margin-bottom: 50px;
+	display: flex;
+	gap : 3px;
+}
+
+.product-detail-description {
+	font-size: 18px;
+	letter-spacing: 0.5px;
+	line-height: 1.6;
+}
+                
