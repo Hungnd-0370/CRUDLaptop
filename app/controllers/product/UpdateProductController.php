@@ -25,6 +25,18 @@ class UpdateProductController extends Controller
         $productPrice = trim($_POST['price']);
         $productDescription = trim($_POST['description']);
 
+        if (strlen($productName) > 128){
+            $this->fieldTooLongNotify("Product Name", 128);
+        }else if (strlen($productVersion) > 128 ){
+            $this->fieldTooLongNotify("Product Version", 128);
+        }else if (strlen($productColor) > 128 ){
+            $this->fieldTooLongNotify("Product Color", 128);
+        }else if (strlen($productPrice) > 128 ){
+            $this->fieldTooLongNotify("Product Price", 128);
+        }else if (strlen($productDescription) > 128 ){
+            $this->fieldTooLongNotify("Product Description", 128);
+        }
+
         if(!arrayEmptyValidate([$productId, $productName, $productVersion, $productColor, $productPrice, $productDescription])) {
             $this->anyFieldEmptyNotify();
         }
@@ -54,6 +66,13 @@ class UpdateProductController extends Controller
         redirect(_WEB_ROOT.'/products');
         exit();
 	}
+
+    public function fieldTooLongNotify($field, $numberCharacter) {
+        flash("updateProduct", "The ". $field . " is too long. Maximum length is " . $numberCharacter ." characters ");
+        redirect(_WEB_ROOT.'/products');
+        exit();
+    }
+
 }
 
 ?>
