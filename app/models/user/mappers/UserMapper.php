@@ -35,10 +35,16 @@ class UserMapper {
 
         $hashedPassword = $row->userPassword;
 
-        if(password_verify($password, $hashedPassword)){
-			
-            return $row;
-        }else{
+        if (password_verify($password, $hashedPassword)) {
+
+			if (isset($_POST['remember-me'])) {
+
+				$token = bin2hex(random_bytes(16));
+				
+				$this->storeRememberMeToken($row->userId, $token);
+			}
+			return $row;
+		}else{
             return false;
         }
     }
@@ -59,4 +65,55 @@ class UserMapper {
         }
     }
 
+	public function storeRememberMeToken($userId, $token) {
+
+		$this->db->query('UPDATE user SET rememberMeToken = :token WHERE userId = :userId');
+		$this->db->bind(':token', $token);
+		$this->db->bind(':userId', $userId);
+	
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function getRemeberMeToken($userId) {
+		
+		$this->db->query('SELECT rememberMeToken FROM user WHERE userId = :userId');
+		$this->db->bind(':userId', $userId);
+
+		$row = $this->db->single();
+
+		if($this->db->rowCount() > 0){
+
+            return $row;
+        }else{
+            return false;
+        }
+	}
+
+	public function checkRememberMeToken($userId, $token) {
+		$this->db->query('SELECT rememberMeToken FROM user WHERE userId = :userId');
+		$this->db->bind(':userId', $userId);
+	
+		$row = $this->db->single();
+	
+		if ($row && $row->rememberMeToken === $token) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	public function removeRememberMeToken($userId) {
+		$this->db->query('UPDATE user SET rememberMeToken = NULL WHERE userId = :userId');
+		$this->db->bind(':userId', $userId);
+		
+		if ($this->db->execute()) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 } 
