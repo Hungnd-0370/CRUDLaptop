@@ -8,13 +8,9 @@ require_once 'UpdateProductController.php';
 class ProductController extends Controller {
 	
 	public function detail($id) {
-		
-		if(isset($_SESSION['userId'])) {
-			$showProductController = new ShowDetailProductController();
-			$showProductController->detail($id);
-		} else {
-			redirect(__DIR_ROOT.'/app/errors/404');
-		}
+	
+		$showProductController = new ShowDetailProductController();
+		$showProductController->detail($id);
 	}
 
     public function create(){
