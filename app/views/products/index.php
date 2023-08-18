@@ -25,8 +25,8 @@
 				<div class="product-color">
 					<?php echo $product->product_color ?>
 				</div>
-				<div class="product-price">
-					<?php echo addCommasToMoney($product->product_price) ?> đ
+				<div class="product-price" style="display: flex; gap: 3px">
+					<?php echo addCommasToMoney($product->product_price) ?> <p style="text-decoration: underline">đ</p>
 				</div>
 			</div>
 			<?php if (isset($_SESSION['userId'])): ?>

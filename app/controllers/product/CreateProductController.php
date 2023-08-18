@@ -22,9 +22,17 @@ class CreateProductController extends Controller {
 		$productPrice = trim($_POST['price']);
 		$productDescription = trim($_POST['description']);
 		
+		if(strlen($productId) > 8) {
+			$this->idTooLongNotify();
+		}
+
         if(!arrayEmptyValidate([$productId, $productName, $productVersion, $productColor, $productPrice, $productDescription])){
            $this->anyFieldEmptyNotify();
         }
+
+		if(!isPositiveNumberValidate($productPrice)) {
+			$this->invalidPriceFormatNotify();
+		}
 		
         $product = new Product($productId, $productName, $productVersion, $productColor, $productPrice, $productDescription);
 		
@@ -40,5 +48,17 @@ class CreateProductController extends Controller {
 		flash("createProduct", "Please fill out all inputs");
         redirect(_WEB_ROOT.'/products');
 		exit();
+	}
+
+	public function invalidPriceFormatNotify() {
+		flash("createProduct", "The price has invalid format. Please check ");
+        redirect(_WEB_ROOT.'/products');
+        exit();
+	}
+
+	public function idTooLongNotify() {
+		flash("createProduct", "The product Id is too long. Maximum length is 8 characters ");
+        redirect(_WEB_ROOT.'/products');
+        exit();
 	}
 }
