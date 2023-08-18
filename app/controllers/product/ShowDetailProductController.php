@@ -16,7 +16,6 @@ class ShowDetailProductController extends Controller {
 
         $product = $this->productMapper->getProductDetail($id);
 
-
 		if (!empty($product)) {
             $data = [];
             $data['subContent']['product'] = $product;
