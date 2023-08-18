@@ -29,6 +29,7 @@
 					<?php echo addCommasToMoney($product->product_price) ?> đ
 				</div>
 			</div>
+			<?php if (isset($_SESSION['userId'])): ?>
 			<div class="operations">
 				<button id = "<?php echo $product->product_id ?>" class="BtnUpdate">		
                         Update
@@ -42,8 +43,8 @@
                     </a>
                 </button>
 			</div>
+			<?php endif; ?>
 		</div>
-
 		<?php endforeach; ?>
 	</div>
 </div>
