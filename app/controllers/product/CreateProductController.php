@@ -23,8 +23,22 @@ class CreateProductController extends Controller {
 		$productDescription = trim($_POST['description']);
 		
 		if(strlen($productId) > 8) {
-			$this->idTooLongNotify();
-		}
+			$this->fieldTooLongNotify("Product ID", 8);
+		}else if (strlen($productName) > 128){
+            $this->fieldTooLongNotify("Product Name", 128);
+        }else if (strlen($productVersion) > 128 ){
+            $this->fieldTooLongNotify("Product Version", 128);
+        }else if (strlen($productColor) > 128 ){
+            $this->fieldTooLongNotify("Product Color", 128);
+        }else if (strlen($productPrice) > 128 ){
+            $this->fieldTooLongNotify("Product Price", 128);
+        }else if (strlen($productDescription) > 128 ){
+            $this->fieldTooLongNotify("Product Description", 128);
+        }
+
+        if (!empty($this->productMapper->getProductDetail($productId))){
+            $this->duplicateProductID();
+        }
 
         if(!arrayEmptyValidate([$productId, $productName, $productVersion, $productColor, $productPrice, $productDescription])){
            $this->anyFieldEmptyNotify();
@@ -56,9 +70,15 @@ class CreateProductController extends Controller {
         exit();
 	}
 
-	public function idTooLongNotify() {
-		flash("createProduct", "The product Id is too long. Maximum length is 8 characters ");
+	public function fieldTooLongNotify($field, $numberCharacter) {
+		flash("createProduct", "The ". $field . " is too long. Maximum length is " . $numberCharacter ." characters ");
         redirect(_WEB_ROOT.'/products');
         exit();
 	}
+
+    public function duplicateProductID(){
+        flash("createProduct", "Product ID already exists. Please check");
+        redirect(_WEB_ROOT.'/products');
+        exit();
+    }
 }
