@@ -12,7 +12,7 @@
 					YES
 				</button>
 				<button type="button" id="not-remove-btn">
-						NO
+					NO
 				</button>
 			</div>
         </form>

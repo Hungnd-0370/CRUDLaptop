@@ -8,25 +8,42 @@ require_once 'UpdateProductController.php';
 class ProductController extends Controller {
 	
 	public function detail($id) {
-
-		$showProductController = new ShowDetailProductController();
-		$showProductController->detail($id);
+		
+		if(isset($_SESSION['userId'])) {
+			$showProductController = new ShowDetailProductController();
+			$showProductController->detail($id);
+		} else {
+			redirect(__DIR_ROOT.'/app/errors/404');
+		}
 	}
 
     public function create(){
 
-        $createProduct = new CreateProductController();
-        $createProduct->create();
+		if(isset($_SESSION['userId'])) {
+			$createProduct = new CreateProductController();
+			$createProduct->create();
+		} else {
+			redirect(__DIR_ROOT.'/app/errors/404');
+		}
     }
 
 	public function delete(){
+		
+		if(isset($_SESSION['userId'])) {
 
-        $deleteProduct = new DeleteProductController();
-        $deleteProduct->delete();
+			$deleteProduct = new DeleteProductController();
+			$deleteProduct->delete();
+		} else {
+			redirect(__DIR_ROOT.'/app/errors/404');
+		}
     }
 	public function update(){
-		
-        $updateProduct = new UpdateProductController();
-        $updateProduct->update();
+
+		if(isset($_SESSION['userId'])) {
+			$updateProduct = new UpdateProductController();
+			$updateProduct->update();
+		} else {
+			redirect(__DIR_ROOT.'/app/errors/404');
+		}
     }
 }
