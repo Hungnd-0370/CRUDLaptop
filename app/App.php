@@ -29,7 +29,7 @@ class App {
 		$url = $this->getUrl();
 		$urlArr = array_filter(explode('/', $url));
 		$urlArr = array_values($urlArr);
-    
+
 		if (!empty($urlArr[0])) {
 			if (strcmp($urlArr[0], 'signup') == 0) {
 	
@@ -50,7 +50,12 @@ class App {
 				$this->__controller = ucfirst($urlArr[0]).'Controller';
 			}
 		} else {
-			redirect(_WEB_ROOT.'/home');
+			if (isset($_COOKIE["member_login"])) {
+			
+				redirect(_WEB_ROOT.'/login/sendRequest?type=autologin');
+			} else {
+				redirect(_WEB_ROOT.'/home');
+			}
 		}
 
 		if(file_exists('app/controllers/'.$controllerFolder.'/'.($this->__controller).'.php')) {

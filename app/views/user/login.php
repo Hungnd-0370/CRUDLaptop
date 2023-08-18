@@ -11,9 +11,9 @@
         echo '<form method="post" action="/login/sendRequest" id="login-form">';
         echo '<input type="hidden" name="type" value="login">';
         echo '<input type="text" name="name/email"  
-            placeholder="Username/Email..." value="' . (isset($_COOKIE['remembered_email']) ? $_COOKIE['remembered_email'] : '') . '">';
+            placeholder="Username/Email...">';
         echo '<input type="password" name="userPassword"
-            placeholder="Password..." value="' . (isset($_COOKIE['remembered_password']) ? $_COOKIE['remembered_password'] : '') . '">';
+            placeholder="Password..." >';
         echo '<div class="remember-me-container">';
         echo '<input type="checkbox" id="remember-me" name="remember-me" value="remember-me"';
         if(isset($_COOKIE["remembered_email"])) {
@@ -29,12 +29,3 @@
 
     include_once __DIR_ROOT.'/app/views/components/footer.php';
 ?>
-
-<script>
-document.getElementById('remember-me').addEventListener('change', function() {
-    if (!this.checked) {
-        document.cookie = "remembered_email=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        document.cookie = "remembered_password=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-    }
-});
-</script>
