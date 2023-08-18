@@ -15,3 +15,10 @@
 
 		return true;
 	}
+
+	function isPositiveNumberValidate($inputString) {
+		// Regular expression to match a positive number
+		$regex = '/^[+]?\d+(\.\d+)?$/';
+	  
+		return preg_match($regex, $inputString) === 1;
+	}

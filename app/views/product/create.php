@@ -39,14 +39,14 @@
             createProductModal.style.display = 'block';
         });
 
-		const formMessageRed = document.querySelector('.form-message-red');
+		const createFormMessageRed = document.querySelector('.form-message-red.createProduct');
 
         closeModalBtn.addEventListener('click', () => {
             createProductModal.style.display = 'none';
-			formMessageRed.style.display = 'none';
+			createFormMessageRed.style.display = 'none';
         });
 
-        if (formMessageRed) {
+        if (createFormMessageRed) {
             createProductModal.style.display = 'block';
         }
     </script>
