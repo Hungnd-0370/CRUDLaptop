@@ -74,6 +74,7 @@
 
 
 		if (updateFormMessageRed) {
+			updateProductModal.style.display = 'block';
             updateFormMessageRed.style.display = 'block';
 			var updatedProduct = localStorage.getItem("updatedProduct");
 
