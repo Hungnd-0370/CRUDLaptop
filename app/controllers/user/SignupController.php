@@ -46,8 +46,8 @@ class SignupController extends Controller{
 			redirect(_WEB_ROOT.'/signup');
 		}
 
-		if(!userNameValidate($data['userId'])){
-			flash("register", "Invalid username. Please choose another");
+		if(!$this->userNameValidate($data['userId'])){
+			flash("register", "Username only contains digits, character, '_' and can't start with digit ");
 			redirect(_WEB_ROOT.'/signup');
 		}
 
@@ -57,7 +57,7 @@ class SignupController extends Controller{
 		}
 
 		if(strlen($data['userPassword']) < 6){
-			flash("register", "Invalid password");
+			flash("register", "Passwords must have more than or equal 6 characters");
 			redirect(_WEB_ROOT.'/signup');
 
 		} 
@@ -67,7 +67,7 @@ class SignupController extends Controller{
 			redirect(_WEB_ROOT.'/signup');
 		}
 
-		if(!duplicateValidate($data)){
+		if(!$this->duplicateValidate($data)){
 			flash("register", "Username or email already taken");
 			redirect(_WEB_ROOT.'/signup');
 		}

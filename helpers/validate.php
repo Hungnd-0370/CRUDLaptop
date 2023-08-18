@@ -9,7 +9,7 @@
 	}
 
 	function emailValidate($email) {
-		if(!filter_var($data['userEmail'], FILTER_VALIDATE_EMAIL)) {
+		if(!filter_var($email, FILTER_VALIDATE_EMAIL)) {
 			return false;
 		}
 
