@@ -25,15 +25,16 @@
 				<div class="product-color">
 					<?php echo $product->product_color ?>
 				</div>
-				<div class="product-price">
-					<?php echo addCommasToMoney($product->product_price) ?> đ
+				<div class="product-price" style="display: flex; gap: 3px">
+					<?php echo addCommasToMoney($product->product_price) ?> <p style="text-decoration: underline">đ</p>
 				</div>
 			</div>
+			<?php if (isset($_SESSION['userId'])): ?>
 			<div class="operations">
 				<button id = "<?php echo $product->product_id ?>" class="BtnUpdate">		
                         Update
 				</button>
-				<button product_id = "<?php echo $product->product_id ?>" class="BtnDelete">
+				<button product_id = "<?php echo $product->product_id ?>" class="delete-btn">
                         Remove
 				</button>
 				<button type="button">
@@ -42,8 +43,8 @@
                     </a>
                 </button>
 			</div>
+			<?php endif; ?>
 		</div>
-
 		<?php endforeach; ?>
 	</div>
 </div>

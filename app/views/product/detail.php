@@ -1,6 +1,5 @@
 <?php 
 	require_once __DIR_ROOT.'/helpers/format.php';
-	$product = $product[0] 
 ?>
 
 <div class="product-detail">
@@ -8,22 +7,22 @@
 
     <div class="product-info">
         <div class="product-detail-id">
-            <?php echo $product->product_id ?>
+            <?php echo $product->getProductId() ?>
         </div>
         <div class="product-detail-name">
-            <?php echo $product->product_name ?>
+            <?php echo $product->getProductName() ?>
         </div>
         <div class="product-detail-version">
-            <?php echo $product->product_version ?>
+            <?php echo $product->getProductVersion() ?>
         </div>
         <div class="product-detail-color">
-            <?php echo $product->product_color ?>
+            <?php echo $product->getProductColor() ?>
         </div>
         <div class="product-detail-price">
-            <?php echo addCommasToMoney($product->product_price) ?> <p style="text-decoration: underline;">đ</p>
+            <?php echo addCommasToMoney($product->getProductPrice()) ?> <p style="text-decoration: underline;">đ</p>
         </div>
         <div class="product-detail-description">
-            <?php echo $product->product_description ?>
+            <?php echo $product->getProductDescription() ?>
         </div>
     </div>
 </div>
