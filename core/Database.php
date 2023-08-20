@@ -4,7 +4,7 @@ class Database
 {
     private $host = 'localhost';
     private $user = 'root';
-    private $password = '12345678';
+    private $password = '';
     private $dbname = 'practice';
 
     private $dbh; // database host
