@@ -15,7 +15,7 @@ class LoginController extends Controller{
 		$this->render('user/login');
 	}
 
-	public function sendRequest() {  // signup/sendRequest
+	public function sendRequest() {  // login/sendRequest
 
 		if ($_SERVER['REQUEST_METHOD'] == 'POST' && $_POST['type'] == 'login') {
 
@@ -29,10 +29,29 @@ class LoginController extends Controller{
 			$loggedInUser = $this->userMapper->login($data['name/email'], $data['userPassword']);
 				
 			if($loggedInUser){
-				$this->rememberMe();
+
+				if ($_POST['remember-me'] === 'remember-me') {
+					
+					$token =  $this->userMapper->getRemeberMeToken($loggedInUser->userId);
+			
+					setcookie("member_login", $data['name/email'] . ':' . $token->rememberMeToken, time() + (30 * 24 * 60 * 60), "/");
+				}
+
 				$this->createUserSession($loggedInUser);
+
 			}else{
+
 				$this->invalidLoginNotify();
+			}
+		} elseif ($_SERVER['REQUEST_METHOD'] == 'GET' && $_GET['type'] == 'autologin' && !isset($_SESSION['userId']) && isset($_COOKIE["member_login"])) {
+						
+			list($identifier, $token) = explode(':', $_COOKIE["member_login"]);
+	
+			if ($this->userMapper->checkRememberMeToken($identifier, $token)) {
+
+				$user = $this->userMapper->findUserByEmailOrUsername($identifier, $identifier);
+
+				$this->createUserSession($user);
 			}
 		}
 	}
@@ -46,19 +65,6 @@ class LoginController extends Controller{
         redirect(_WEB_ROOT.'/home');
     }
 
-	public function rememberMe() {
-
-		if (isset($_POST['remember-me'])) {
-
-			setcookie("remembered_email", $_POST['name/email'], time() + (30 * 24 * 60 * 60), "/");
-			setcookie("remembered_password", $_POST['userPassword'], time() + (30 * 24 * 60 * 60), "/");
-
-		} else {
-			// If "Remember Me" is unchecked, clear the remembered values
-			setcookie("remembered_email", "", time() - 3600, "/");
-			setcookie("remembered_password", "", time() - 3600, "/");
-		}
-	}
 
 	public function validate($data) {
 		if (!arrayEmptyValidate($data)) {
