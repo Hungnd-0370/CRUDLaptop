@@ -50,19 +50,19 @@ class LoginController extends Controller{
 			if ($this->userMapper->checkRememberMeToken($identifier, $token)) {
 
 				$user = $this->userMapper->findUserByEmailOrUsername($identifier, $identifier);
-
-				$this->createUserSession($user);
+				
+				$this->createUserSession($user, $_SESSION['return_url']);
 			}
 		}
 	}
 
-	public function createUserSession($user){
+	public function createUserSession($user, $returnUrl = '/home'){
 		
         $_SESSION['userId'] = $user->userId;
         $_SESSION['userName'] = $user->userName;
         $_SESSION['userEmail'] = $user->userEmail;
 		
-        redirect(_WEB_ROOT.'/home');
+        redirect(_WEB_ROOT.$returnUrl);
     }
 
 
