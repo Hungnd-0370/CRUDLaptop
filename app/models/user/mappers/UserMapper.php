@@ -93,9 +93,9 @@ class UserMapper {
         }
 	}
 
-	public function checkRememberMeToken($userId, $token) {
-		$this->db->query('SELECT rememberMeToken FROM user WHERE userId = :userId');
-		$this->db->bind(':userId', $userId);
+	public function checkRememberMeToken($identifier, $token) {
+		$this->db->query('SELECT rememberMeToken FROM user WHERE userId = :identifier OR userEmail = :identifier');
+		$this->db->bind(':identifier', $identifier);
 	
 		$row = $this->db->single();
 	

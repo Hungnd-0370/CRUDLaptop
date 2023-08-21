@@ -70,6 +70,7 @@ class LoginController extends Controller{
 		if (!arrayEmptyValidate($data)) {
 			$this->anyFieldEmptyNotify();
 		}
+		$this->feildLongValidate($data);
 	}
 
 	public function invalidLoginNotify() {
@@ -80,5 +81,26 @@ class LoginController extends Controller{
 	public function anyFieldEmptyNotify() {
 		flash("login", "Please fill out all inputs");
 		redirect(_WEB_ROOT.'/login');
+	}
+	public function feildLongValidate($data) {
+		
+		if (array_key_exists('userPassword', $data)) {
+			unset($data['userPassword']);
+		} 
+		$feildTooLong  = [];
+		foreach($data as $key => $value){
+			if(strlen($value) > 128) {
+				array_push($feildTooLong, $key);
+			}
+		}
+		if(!empty($feildTooLong)){
+			$mess =implode(',', $feildTooLong);
+			$this->fieldTooLongNotify($mess, 128);
+		}
+	}
+	public function fieldTooLongNotify($field, $numberCharacter) {
+		flash("login", "The ". $field . " is too long. Maximum length is " . $numberCharacter ." characters ");
+        redirect(_WEB_ROOT.'/login');
+        exit();
 	}
 }

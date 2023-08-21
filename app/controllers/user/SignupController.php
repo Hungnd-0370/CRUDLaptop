@@ -45,6 +45,8 @@ class SignupController extends Controller{
 			flash("register", "Please fill out all inputs");
 			redirect(_WEB_ROOT.'/signup');
 		}
+		
+		$this->feildLongValidate($data);
 
 		if(!$this->userNameValidate($data['userId'])){
 			flash("register", "Username only contains digits, character, '_' and can't start with digit ");
@@ -90,5 +92,29 @@ class SignupController extends Controller{
 			return false;
 		}
 		return true;
+	}
+	public function feildLongValidate($data) {
+		
+		if (array_key_exists('userPassword', $data)) {
+			unset($data['userPassword']);
+		} 
+		if (array_key_exists('pwdRepeat', $data)) {
+			unset($data['pwdRepeat']);
+		} 
+		$feildTooLong  = [];
+		foreach($data as $key => $value){
+			if(strlen($value) > 128) {
+				array_push($feildTooLong, $key);
+			}
+		}
+		if(!empty($feildTooLong)){
+			$mess =implode(',', $feildTooLong);
+			$this->fieldTooLongNotify($mess, 128);
+		}
+	}
+	public function fieldTooLongNotify($field, $numberCharacter) {
+		flash("register", "The ". $field . " is too long. Maximum length is " . $numberCharacter ." characters ");
+        redirect(_WEB_ROOT.'/signup');
+        exit();
 	}
 }
