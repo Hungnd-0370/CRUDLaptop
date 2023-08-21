@@ -51,7 +51,6 @@ class App {
 			}
 		} else {
 			if (isset($_COOKIE["member_login"])) {
-			
 				redirect(_WEB_ROOT.'/login/sendRequest?type=autologin');
 			} else {
 				redirect(_WEB_ROOT.'/home');
