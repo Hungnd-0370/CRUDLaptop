@@ -19,7 +19,7 @@ class App {
 		if(!empty($_SERVER['PATH_INFO'])) {
 			$url = $_SERVER['PATH_INFO'];
 		} else {
-			$url = '/';
+			$url = '';
 		}
 		return $url;
 	}
@@ -30,7 +30,18 @@ class App {
 		$urlArr = array_filter(explode('/', $url));
 		$urlArr = array_values($urlArr);
 
+		if (isset($_COOKIE['member_login']) && !isset($_SESSION['userId'])) {
+
+			if($url !== '/login/sendRequest?type=autologin' && !isset($_SESSION['return_url'])) {
+
+				$_SESSION['return_url'] = $url;
+
+				redirect(_WEB_ROOT.'/login/sendRequest?type=autologin');
+			}
+		}
+
 		if (!empty($urlArr[0])) {
+
 			if (strcmp($urlArr[0], 'signup') == 0) {
 	
 				$this->__controller = 'SignupController';
@@ -50,12 +61,7 @@ class App {
 				$this->__controller = ucfirst($urlArr[0]).'Controller';
 			}
 		} else {
-			if (isset($_COOKIE["member_login"])) {
-			
-				redirect(_WEB_ROOT.'/login/sendRequest?type=autologin');
-			} else {
-				redirect(_WEB_ROOT.'/home');
-			}
+			redirect(_WEB_ROOT.'/home');
 		}
 
 		if(file_exists('app/controllers/'.$controllerFolder.'/'.($this->__controller).'.php')) {
